@@ -1,0 +1,49 @@
+# ==============================================================================
+# SysOps CLI Toolkit - Enterprise CI/CD Quality Assurance Pipeline
+# ==============================================================================
+
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  qa-and-test:
+    name: Python ${{ matrix.python-version }} QA & Test
+    runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Code Linter (Flake8 & Ruff)
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source
+          ruff check .
+
+      - name: Run Static Type Analysis (Mypy)
+        run: |
+          mypy main.py test_main.py
+
+      - name: Run PyTest Suite with Coverage
+        run: |
+          pytest -v --cov=. --cov-report=term-missing --tb=short
