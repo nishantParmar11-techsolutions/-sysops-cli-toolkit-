@@ -1,10 +1,10 @@
 # SysOps CLI Toolkit
 
-[![CI Pipeline](https://github.com/YOUR_USERNAME/sysops-cli-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/sysops-cli-toolkit/actions/workflows/ci.yml)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/downloads/)
-[![Typer](https://img.shields.io/badge/Typer-0.12.3-green.svg?logo=typer)](https://typer.tiangolo.com/)
+[![Enterprise CI Pipeline](https://github.com/nishantParmar11-techsolutions/-sysops-cli-toolkit-/actions/workflows/ci.yml/badge.svg)](https://github.com/nishantParmar11-techsolutions/-sysops-cli-toolkit-/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/)
+[![Typer](https://img.shields.io/badge/Typer-0.12.3-brightgreen.svg)](https://typer.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Enterprise SysOps Pipeline](https://github.com/nishantParmar11-techsolutions/sysops-cli-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/nishantParmar11-techsolutions/sysops-cli-toolkit/actions/workflows/ci.yml)
+
 
 > An enterprise-grade command-line interface (CLI) built with **Typer** and **Rich** designed for DevOps automation, microservice health audits, and real-time terminal telemetry.
 
