@@ -1,0 +1,69 @@
+# ==============================================================================
+# SysOps CLI Toolkit - Master-Class Python Package & Tool Configuration
+# ==============================================================================
+
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sysops-cli-toolkit"
+version = "1.0.0"
+description = "Enterprise SysOps CLI Toolkit for server monitoring and webhook automation."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Nishant Parmar", email = "developer@abynthe.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console"
+]
+dependencies = [
+    "typer[all]>=0.12.3",
+    "rich>=13.7.1",
+    "requests>=2.31.0",
+    "pydantic>=2.6.4",
+    "pydantic-settings>=2.2.1"
+]
+
+[project.scripts]
+sysops = "main:app"
+
+[tool.setuptools]
+py-modules = ["main"]
+
+# --- Black Code Formatter Configuration ---
+[tool.black]
+line-length = 88
+target-version = ['py310', 'py311', 'py312']
+include = '\.pyi?$'
+
+# --- Ruff Linter Configuration ---
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]  # Enforces pyflakes (F), pycodestyle (E), and isort (I)
+
+# --- Mypy Static Type Checking Configuration ---
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+ignore_missing_imports = true
+
+# --- PyTest & Coverage Configuration ---
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q --cov=main --cov-report=term-missing"
+testpaths = ["."]
