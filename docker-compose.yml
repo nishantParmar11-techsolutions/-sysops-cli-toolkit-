@@ -1,0 +1,39 @@
+# ==============================================================================
+# SysOps CLI Toolkit - Master-Class Enterprise Docker Compose Orchestrator
+# ==============================================================================
+
+services:
+  # --- Mock Enterprise Backend / Webhook Receiver Service ---
+  mock-server:
+    image: kennethreitz/httpbin:latest
+    container_name: sysops-mock-server
+    ports:
+      - "8000:80"
+    networks:
+      - sysops-net
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost/status/200')"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 2s
+    restart: unless-stopped
+
+  # --- SysOps CLI Toolkit Testing Container ---
+  sysops-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sysops-cli-runner
+    depends_on:
+      mock-server:
+        condition: service_healthy
+    networks:
+      - sysops-net
+    # Runs a live health audit against the verified mock server
+    command: ["health-check", "--url", "http://mock-server/status/200"]
+
+networks:
+  sysops-net:
+    driver: bridge
+    
