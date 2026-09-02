@@ -1,0 +1,26 @@
+# ==============================================================================
+# SysOps CLI Toolkit - Elite Git Ignore Manifest
+# ==============================================================================
+
+# --- Python Bytecode & Caches ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Virtual Environments & Secrets ---
+venv/
+env/
+.env
+
+# --- IDEs & Operating System Artifacts ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
